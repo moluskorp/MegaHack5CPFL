@@ -4,9 +4,13 @@ const previsionsRouter = Router();
 
 import CalculatePrevisionService from '../services/CalculatePrevisionService';
 
+import getUser from '../config/userRegistry';
+
 previsionsRouter.post('/', async (request, response) => {
 
-    const { id, read } = request.body;
+    const { id } = await getUser();
+
+    const { read } = request.body;
 
     const calculatePrevision = new CalculatePrevisionService();
 

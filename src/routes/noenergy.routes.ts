@@ -5,10 +5,15 @@ import { getRepository, getCustomRepository } from 'typeorm';
 import NoenergyRepository from '../repositories/NoenergyRepository';
 import CreateNoenergyService from '../services/CreateNoenergyService';
 
+import getUser from '../config/userRegistry';
+
+
+
 const noenergyRouter = Router();
 
 noenergyRouter.get('/', async (request, response) => {
-    const { id } = request.body;
+
+    const { id } = await getUser();
 
     const noenergyRepository = getCustomRepository(NoenergyRepository);
 
@@ -18,7 +23,8 @@ noenergyRouter.get('/', async (request, response) => {
 });
 
 noenergyRouter.post('/', async (request, response) => {
-    const { id } = request.body;
+
+    const { id } = await getUser();
 
     const createNoenergy = new CreateNoenergyService();
 

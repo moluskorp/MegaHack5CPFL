@@ -7,6 +7,7 @@ import UpdateBudgetService from '../services/UpdateBudgetService';
 const usersRouter = Router();
 
 import User from '../models/User';
+import getUser from '../config/userRegistry';
 
 usersRouter.get('/', async (request, response) => {
     const userRepository = getRepository(User);
@@ -56,8 +57,8 @@ usersRouter.post('/', async (request, response) => {
     return response.json(user);
 });
 
-usersRouter.patch('/:id', async (request, response) => {
-    const { id } = request.params;
+usersRouter.patch('/', async (request, response) => {
+    const { id } = await getUser();
     const { budget } = request.body;
 
     const updateUserBudget = new UpdateBudgetService();
