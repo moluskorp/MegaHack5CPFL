@@ -37,8 +37,6 @@ class CreateUserService {
 
         const userRepository = getRepository(User);
 
-        console.log('oi')
-
         const findSameEmail = await userRepository.findOne({
             where: { email },
         });

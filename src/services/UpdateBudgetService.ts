@@ -12,8 +12,6 @@ class UpdateBudgetService {
     public async execute({ user_id, budget }: Request): Promise<User> {
         const userRepository = getRepository(User);
 
-        console.log(user_id);
-
         const user = await userRepository.findOne(user_id);
 
         if (!user) {
